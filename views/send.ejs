@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <title>XLS>JSON>>DB</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="text-white bg-dark mb-3">
+     <div style="margin: 2em;">
+          <h1>Excel to JSON to MongoDB</h1>
+
+          <div class="card text-white bg-success mb-3">
+               <div class="card-header text-white">
+                    <h5 class="card-title" style="margin-top: 0.25em; margin-bottom: 0.25em;">This is your excel sheet converted to JSON</h5>
+               </div>
+               <div class="card-body text-white">
+                    <h5>
+                         <%- JSON.stringify(passedData) %>
+                    </h5>
+                    <br>
+                    <form 
+                         id        =  "uploadForm"
+                         enctype   =  "multipart/form-data"
+                         action    =  "sendtoDB"
+                         method    =  "post"
+                    >
+                         <div class="text-center">
+                              <input class="btn btn-primary" style="align-items: center;" type="submit" value="send to MongoDB" name="submit">
+                         </div>
+                    </form>
+               </div>
+          </div>
+
+          <br>
+
+          <div class="card text-white bg-success mb-3">
+               <div class="card-header text-white">
+                    <h5 class="card-title" style="margin-top: 0.25em; margin-bottom: 0.25em;">Choose a different excel sheet to convert to JSON</h5>
+               </div>
+               <div class="card-body text-white">               
+                    <form 
+                         id        =  "uploadForm"
+                         enctype   =  "multipart/form-data"
+                         action    =  "upload"
+                         method    =  "post"
+                    >
+                         <div class="custom-file mb-3">
+                              <input type="file" class="custom-file-input" id="customFile" name="file">
+                              <label class="custom-file-label" for="customFile">Choose file</label>
+                         </div>
+                         <div class="text-center">
+                              <input class="btn btn-primary" type="submit" value="Upload" name="submit">
+                         </div>
+                    </form>
+               </div>
+          </div>       
+          <br>
+          <br>
+</body>
+<script>
+     // so file name appears after selected
+     $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+     });
+</script> 
+<footer class="footerContent" style="text-align: center;"> 
+     Made with ♥ by 
+     <a href="https://github.com/samirrh" target="_blank"> Samir Haque </a>
+     !
+</footer>
+</html>
